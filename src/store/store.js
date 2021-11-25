@@ -1,11 +1,10 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import indexReducer from './index';
+import indexReducer from '../reducer';
 
 const reducer = combineReducers({
   index: indexReducer
 });
-
 
 
 export const getStore =  () => {

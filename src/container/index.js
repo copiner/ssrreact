@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // node里渲染jsx，react必须得使用babel
 import { connect} from 'react-redux';
-import { getIndexList } from '../store/index';
+import { getIndexList } from '../action';
 
 const Index = (props) =>{
   let [count, setCount] = useState(1);
