@@ -8,7 +8,9 @@ import { getStore } from '../store/store';
 import { matchRoutes, renderRoutes } from 'react-router-config'
 let store = getStore();
 const app = express();
-app.use(express.static('public'));
+
+app.use(express.static('public'));//main.js
+
 app.get('*', function(req, res) {
   // 这里拉取数据，直接渲染，组件有load静态方法，就在server端获取数据，直接显示
   let matchRet = matchRoutes(routes, req.path);
@@ -35,7 +37,7 @@ app.get('*', function(req, res) {
     )
     //在服务端注入数据，构建出组件树,序列化成 HTML
     const ssrStr=context.css.length ? context.css.join('\n'): '';
-    res.send(`
+    res.send(`<!DOCTYPE html>
       <html>
         <head>
           <title>kkbsssr</title>

@@ -1,4 +1,5 @@
 // 客户端webpack打包入口
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 let path = require('path');
 module.exports = {
   target: 'node',
@@ -13,13 +14,28 @@ module.exports = {
   },
   module: {
     rules: [
-        {
-            test: /\.js$/,
-            exclude: '/node_modules/',
-            use: {
-                loader: "babel-loader"
+            {
+                test: /\.js$/,
+                exclude: '/node_modules/',
+                use: {
+                    loader: "babel-loader"
+                }
+          },
+          {
+                test: /\.css$/,
+                exclude: '/node_modules/',
+                use: [
+                    { loader: 'style-loader' },
+                    {
+                      loader: 'css-loader',
+                      options: {
+                        modules: true
+                      }
+                    },
+                    { loader: 'postcss-loader' }
+                ]
             }
-      }
-    ]
-  }
+        ]
+    },
+    // plugins: [new MiniCssExtractPlugin()]
 }

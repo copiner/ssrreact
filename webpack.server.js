@@ -1,4 +1,5 @@
 const nodeExternals = require('webpack-node-externals');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // 服务端webpack打包入口
 let path = require('path');
 module.exports = {
@@ -15,13 +16,28 @@ module.exports = {
   },
   module: {
     rules: [
-        {
-            test: /\.js$/,
-            exclude: '/node_modules/',
-            use: {
-                loader: "babel-loader"
+            {
+                test: /\.js$/,
+                exclude: '/node_modules/',
+                use: {
+                    loader: "babel-loader"
+                }
+          },
+          {
+                test: /\.css$/,
+                exclude: '/node_modules/',
+                use: [
+                    { loader: MiniCssExtractPlugin.loader },
+                    {
+                      loader: 'css-loader',
+                      options: {
+                        modules: true
+                      }
+                    },
+                    { loader: 'postcss-loader' }
+                ]
             }
-      }
-    ]
-  }
+        ]
+    },
+    plugins: [new MiniCssExtractPlugin()]
 }
