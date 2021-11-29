@@ -1,17 +1,18 @@
 export const handleHtml = ({ reactStr, initialData, styles }) => {
-  const jsKeys = ['libs.js', 'main.js'];
-  const cssKeys = ['main.css'];
+
 
   let jsValues = [];
   let cssValues = [];
 
   if (__isDev) {
-    jsValues = ['libs.index.js', 'index.js'];
-    cssValues = ['index.css'];
+    jsValues = ['main.js'];
+    cssValues = ['main.css'];
 
   } else {
-    const mainfest = require('@dist/mainfest.json');
-
+    const mainfest = require('../../../dist/mainfest.json');
+    const jsKeys = ['libs.js', 'main.js'];
+    const cssKeys = ['main.css'];
+    
     jsValues = jsKeys.map(v => mainfest[v]);
     cssValues = cssKeys.map(v => mainfest[v]);
   }
@@ -19,13 +20,14 @@ export const handleHtml = ({ reactStr, initialData, styles }) => {
   return `<!DOCTYPE html>
   <html lang="en">
   <head>
-      <meta charset="UTF-8">
+      <meta charset="UTF-8"/>
       <title></title>
+      <style>${styles}</style>
       ${cssValues.map(v => `<link rel="stylesheet" href="${v}"></link>`).join('')}
   </head>
   <body>
       <div id="root">${reactStr}</div>
-      <textarea id="textareaSsrData" style="display: none">${initialData}</textarea>
+      <script>window._context=${initialData}</script>
   </body>
   ${jsValues.map(v => `<script type="text/javascript" src="${v}"></script>`).join('')}
   </html>`

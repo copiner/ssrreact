@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "npm-run-all --parallel dev:**",
-    "dev:start": "nodemon  --exec node ./build/bundle.js --watch",
-    "dev:server": "webpack --config webpack.server.js --watch",
-    "dev:client": "webpack --config webpack.client.js --watch"
+    "dev:start": "nodemon  --exec node ./dist/server/bundle.js --watch",
+    "dev:server": "webpack --config ./config/webpack.server.js --watch",
+    "dev:client": "webpack --config ./config/webpack.client.dev.js --watch",
+    "pro:server": "webpack --config ./config/webpack.server.js",
+    "pro:client": "webpack --config ./config/webpack.client.pro.js"
   },
   "author": "",
   "license": "ISC",
@@ -51,6 +53,7 @@
     "style-loader": "^3.3.1",
     "webpack": "^5.64.3",
     "webpack-cli": "^4.9.1",
+    "webpack-manifest-plugin": "^4.0.2",
     "webpack-merge": "^5.8.0",
     "webpack-node-externals": "^3.0.0"
   }

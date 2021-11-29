@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { getStore } from '../store/store';
 
 import { matchRoutes, renderRoutes } from 'react-router-config'
-// import { handleHtml, getStaticRoute } from './util';
+import { handleHtml, getStaticRoute } from './util';
 
 const store = getStore();
 
@@ -31,6 +31,7 @@ export default async (req, res, next) => {
     await Promise.all(promises)
 
     let context = {css:[]};
+
     let reactStr = renderToString(
       <Provider store={store}>
         <StaticRouter location={url} context={context}>
@@ -41,23 +42,15 @@ export default async (req, res, next) => {
       </Provider>
     )
 
-
+    const htmlInfo = {
+      reactStr,
+      initialData:JSON.stringify(store.getState()),
+      styles:context.css.length ? context.css.join('\n'): ''
+    };
 
     //在服务端注入数据，构建出组件树,序列化成 HTML
-    const ssrStr=context.css.length ? context.css.join('\n'): '';
-    res.send(`<!DOCTYPE html>
-      <html>
-        <head>
-          <title>kkbsssr</title>
-          <style>${ssrStr}</style>
-        </head>
-        <body>
-          <div id="root">${reactStr}</div>
-          <script>window._context=${JSON.stringify(store.getState())}</script>
-          <script src="/main.js"></script>
-        </body>
-      </html>
-    `)
+    const html = handleHtml(htmlInfo);
+    res.send(html);
 
 
     return next()
