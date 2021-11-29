@@ -1,41 +1,29 @@
 // 客户端webpack打包入口
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { merge } = require('webpack-merge');
+const base = require('./webpack.base');
 let path = require('path');
-module.exports = {
-  target: 'node',
-  mode: 'production',
-  entry: './src/client/index.js',
-  output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, './public'),
-    // filename: './js/[name].[contenthash].js',
-    // chunkFilename: './js/[name].[contenthash].js',
-    //publicPath: './'
-  },
-  module: {
-    rules: [
-            {
-                test: /\.js$/,
-                exclude: '/node_modules/',
-                use: {
-                    loader: "babel-loader"
-                }
-          },
-          {
-                test: /\.css$/,
-                exclude: '/node_modules/',
-                use: [
-                    { loader: 'style-loader' },
-                    {
-                      loader: 'css-loader',
-                      options: {
-                        modules: true
-                      }
-                    },
-                    { loader: 'postcss-loader' }
-                ]
-            }
-        ]
+
+module.exports = merge(base, {
+    // target: 'web',
+    entry: './src/client/index.js',
+    output: {
+      filename: 'main.js',
+      path: path.resolve(__dirname, './public')
     },
-    // plugins: [new MiniCssExtractPlugin()]
-}
+    // optimization: {
+    //     splitChunks: {
+    //       cacheGroups: {
+    //         libs: {
+    //           test: /node_modules/,
+    //           chunks: 'initial',
+    //           name: 'libs'
+    //         }
+    //       }
+    //     }
+    // },
+    // plugins: [
+    //     new Webpack.DefinePlugin({
+    //      'process.env': env
+    //     }),
+    // ]
+});

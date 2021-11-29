@@ -1,13 +1,16 @@
 import React from 'react';
+import asyncComp from '../util/';
+
 import Index from '../container';
 import Login from '../container/login';
+import Apple from '../container/apple';
 import App from '../app';
-
+//asyncComp(() => import('../container/apple'))
 export default [
-  {
-      path: '/',
-      component: App,
-      routes: [
+    {
+        path: '/',
+        component: App,
+        routes: [
           {
               path: '/',
               component: Index,
@@ -21,6 +24,12 @@ export default [
               exact: true,
               key: 'login'
           }
-      ]
-  }
+        ]
+    },
+    {
+        path: '/apple',
+        component:Apple,
+        name: 'apple',
+        exact: true
+    }
 ]

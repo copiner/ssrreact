@@ -6,6 +6,7 @@ class Header extends React.Component{
     render(){
         return(
             <div className={stl.bg}>
+                <Link to='/apple'>苹果</Link>
                 <Link to='/login'>登录</Link>
                 <Link to='/'>列表</Link>
             </div>
