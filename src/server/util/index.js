@@ -12,7 +12,7 @@ export const handleHtml = ({ reactStr, initialData, styles }) => {
     const mainfest = require('../../../dist/mainfest.json');
     const jsKeys = ['libs.js', 'main.js'];
     const cssKeys = ['main.css'];
-    
+
     jsValues = jsKeys.map(v => mainfest[v]);
     cssValues = cssKeys.map(v => mainfest[v]);
   }
@@ -21,6 +21,7 @@ export const handleHtml = ({ reactStr, initialData, styles }) => {
   <html lang="en">
   <head>
       <meta charset="UTF-8"/>
+      <meta name="viewport" content="initial-scale=1, width=device-width" />
       <title></title>
       <style>${styles}</style>
       ${cssValues.map(v => `<link rel="stylesheet" href="${v}"></link>`).join('')}

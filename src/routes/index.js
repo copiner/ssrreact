@@ -3,7 +3,7 @@ import asyncComp from '../util/';
 
 import Index from '../container';
 import Login from '../container/login';
-import Apple from '../container/apple';
+import Apple from '../component/apple';
 import App from '../app';
 //asyncComp(() => import('../container/apple'))
 export default [
@@ -23,13 +23,13 @@ export default [
               component: Login,
               exact: true,
               key: 'login'
+          },
+          {
+              path: '/apple',
+              component:Apple,
+              name: 'apple',
+              exact: true
           }
         ]
-    },
-    {
-        path: '/apple',
-        component:Apple,
-        name: 'apple',
-        exact: true
     }
 ]

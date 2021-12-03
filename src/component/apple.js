@@ -1,10 +1,11 @@
 import React from 'react';
+import Button from '@mui/material/Button';
 
 const Apple = () =>{
   return (
     <div>
       <h1>苹果</h1>
-      <input type="text" placeholder="水果" />
+      <Button variant="contained">你好，世界</Button>
     </div>
   )
 }
