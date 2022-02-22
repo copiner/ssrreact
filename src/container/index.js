@@ -1,32 +1,29 @@
-import React, { useState, useEffect } from 'react';
-// node里渲染jsx，react必须得使用babel
-import { connect} from 'react-redux';
-import { getIndexList } from '../action';
+import React from 'react';
+import routes from '../routes';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
-const Index = (props) =>{
-  let [count, setCount] = useState(1);
-  // useEffect(() => {
-  //   props.getIndexList()
-  // }, [])
-  console.log('props', props.list);
-  console.log('count', count);
+const App = () => {
   return (
-    <div>
-      <button onClick={() => setCount(count + 1)}>+</button><span>计数 {count}</span><button onClick={() => setCount(count - 1)}>-</button>
-      {/* <button onClick={() =>props.getIndexList()}>加载</button> */}
-      <ul>
-        {props.list.map(item => <li key={item.id}>{item.name}</li>)}
-      </ul>
-    </div>
+      <>
+      <Routes>
+        {
+          routes.map(v => {
+              const { path, children, element } = v;
+              if(children && children.length){
+                 return(
+                      <Route key={path} path={path} element = {element} >
+                        <Route key={children.path} path={children.path} element = {children.element} />
+                      </Route>
+                  )
+              } else {
+                  return <Route key={path} path={path} element = {element} />
+              }
 
+          })
+        }
+      </Routes>
+      </>
   )
-}
+};
 
-// server端拉取数据
-Index.load = (store) => {
-  return store.dispatch(getIndexList());
-}
-export default connect(
-  state => ({list: state.index.list }),
-  {getIndexList}
-)(Index);
+export default App;

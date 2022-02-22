@@ -6,7 +6,7 @@ let path = require('path');
 module.exports = {
     target: 'web',
     mode: 'development',
-    entry: './src/client/index.js',
+    entry: './src/index.js',
     output: {
       filename: 'main.js',
       path: path.resolve(__dirname, '../dist/client')

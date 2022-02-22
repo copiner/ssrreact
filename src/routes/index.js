@@ -1,35 +1,25 @@
 import React from 'react';
 import asyncComp from '../util/';
-
-import Index from '../container';
-import Login from '../container/login';
-import Apple from '../component/apple';
-import App from '../app';
 //asyncComp(() => import('../container/apple'))
-export default [
+
+import Apple from '../component/apple';
+import Header from '../component/header';
+import Peach from '../component/peach';
+
+const routes = [
     {
         path: '/',
-        component: App,
-        routes: [
-          {
-              path: '/',
-              component: Index,
-              loadData: Index.load,
-              exact: true,
-              key: 'home',
-          },
-          {
-              path: '/login',
-              component: Login,
-              exact: true,
-              key: 'login'
-          },
+        element: <Header />,
+        children: [
           {
               path: '/apple',
-              component:Apple,
-              name: 'apple',
-              exact: true
+              element:<Apple />
           }
         ]
+    },
+    {
+        path: '/peach',
+        element:<Peach />,
     }
 ]
+export default routes
