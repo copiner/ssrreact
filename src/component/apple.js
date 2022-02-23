@@ -1,19 +1,20 @@
 import React from 'react';
-import Button from '@mui/material/Button';
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useLocation } from "react-router-dom";
 
 const Apple = (props) =>{
-    console.log(props)
+
     let [searchParams, setSearchParams] = useSearchParams();
+    let location = useLocation();
 
     const handleClick = () => {
         console.log(searchParams.get("shape"))
+        console.log(location)
     }
 
     return (
         <div>
           <h1>苹果</h1>
-          <Button onClick={handleClick} variant="contained">你好，世界</Button>
+          <input type="button" value="苹果" onClick={handleClick} />
         </div>
     )
 }

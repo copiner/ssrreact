@@ -1,12 +1,14 @@
 import React from 'react';
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 
 const Color = (props) =>{
-    console.log(props)
+    const navigate = useNavigate();
+
     let { color } = useParams();
 
     const handleClick = () => {
         console.log(color)
+        navigate('/apple?shape=big',{state:color})
     }
 
     return (
