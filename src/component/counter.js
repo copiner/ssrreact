@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-function Counter() {
-
+function Counter(props) {
+    console.log(props)
     const [count, setCount] = useState(0);
 
     return (

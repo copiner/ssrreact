@@ -10,7 +10,7 @@ module.exports = {
     externals:[nodeExternals()],
     entry: './src/server/index.js',
     output: {
-      filename: '[name].[contenthash].js',
+      filename: 'bundle.js',
       path: path.resolve(__dirname, '../dist/server/')
     },
     module: {
