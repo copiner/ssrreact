@@ -1,9 +1,11 @@
-import React from 'react'
-import asyncComp from '../util/'
+import React,{ Suspense } from 'react'
+// import asyncComp from '../util/'
 //asyncComp(() => import('../container/apple'))
 
+const Peach = React.lazy(() => import('../container/peach'));
+
 import Header from '../container/header'
-import Peach from '../container/peach'
+// import Peach from '../container/peach'
 import Counter from '../component/counter'
 import Apple from '../component/apple'
 import Color from '../component/color'
@@ -17,7 +19,7 @@ const routes = [
     {
         path: '/peach',
         name:"桃子",
-        element:<Peach />,
+        element:<Suspense fallback={<>...</>}><Peach /></Suspense>,
         children: [
           {
               path: '/peach/:color',
