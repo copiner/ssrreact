@@ -9,6 +9,8 @@ import Header from '../container/header'
 import Counter from '../component/counter'
 import Apple from '../component/apple'
 import Color from '../component/color'
+import Favor from '../component/favor'
+import Focus from '../component/focus'
 
 const routes = [
     {
@@ -36,6 +38,16 @@ const routes = [
         path: '/apple',
         name:"苹果",
         element:<Apple />
+    },
+    {
+	path:'/favor',
+	name:'偏爱',
+	element:<Favor />
+    },
+    {
+	path:'/focus',
+	name:'聚焦',
+	element:<Focus />
     }
 ]
 
