@@ -46,6 +46,21 @@ module.exports = {
         new Webpack.DefinePlugin({
           '__isServer': false,
           '__isDev': true
-        })
-    ]
+        }),
+        new Webpack.HotModuleReplacementPlugin()
+    ],
+    devServer: {
+      contentBase: path.resolve(__dirname, "../dist/client"),
+      publicPath: './',
+      host:"127.0.0.1",
+      port: 9000,
+      hot: true,
+      proxy: {
+         '/api': {
+           target: "",
+           changeOrigin:true,
+           pathRewrite: {'^/api' : ''}
+         }
+       }
+    }
 }

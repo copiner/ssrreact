@@ -1,27 +1,30 @@
 import React from 'react';
 import routes from '../routes';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate,Outlet,Link } from 'react-router-dom';
 
+import NoMatch from '../component/nomatch';
 const App = () => {
   return (
       <>
-      <Routes>
-        {
-          routes.map(v => {
-              const { path, children, element } = v;
-              if(children && children.length){
-                 return(
-                      <Route key={path} path={path} element = {element} >
-                        <Route key={children.path} path={children.path} element = {children.element} />
-                      </Route>
-                  )
-              } else {
-                  return <Route key={path} path={path} element = {element} />
-              }
+          <h1>Bookfruits</h1>
+          <Routes>
+            {
+              routes.map(v => {
+                  const { path, children, element } = v;
+                  if(children && children.length){
+                     return ( <Route key={path} path={path} element = {element} >
+                                  {
+                                      children.map( c=> <Route key={c.path} path={c.path} element = {c.element} /> )
+                                  }
+                              </Route> )
+                  } else {
+                      return <Route key={path} path={path} element = {element} />
+                  }
 
-          })
-        }
-      </Routes>
+              })
+            }
+            <Route path="*" element={<NoMatch />} />
+          </Routes>
       </>
   )
 };

@@ -1,15 +1,17 @@
 // 客户端webpack打包入口
 const Webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const WebpackManifestPlugin = require('webpack-manifest-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 let path = require('path');
+
 
 module.exports = {
     target: 'web',
     mode: 'production',
     entry: './src/index.js',
     output: {
-      filename: 'main-[contentHash:10].js',
+      filename: './js/[name].[contenthash].js',
+      chunkFilename: './js/[name].[contenthash].js',
       path: path.resolve(__dirname, '../dist/client/')
     },
     module: {

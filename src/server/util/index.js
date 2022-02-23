@@ -4,18 +4,18 @@ export const handleHtml = ({ reactStr, initialData, styles }) => {
   let jsValues = [];
   let cssValues = [];
 
-  // if (__isDev) {
-  //   jsValues = ['main.js'];
-  //   cssValues = ['main.css'];
-  //
-  // } else {
-  //   const mainfest = require('../../../dist/mainfest.json');
-  //   const jsKeys = ['libs.js', 'main.js'];
-  //   const cssKeys = ['main.css'];
-  //
-  //   jsValues = jsKeys.map(v => mainfest[v]);
-  //   cssValues = cssKeys.map(v => mainfest[v]);
-  // }
+  if (__isDev) {
+    jsValues = ['main.js'];
+    cssValues = ['main.css'];
+
+  } else {
+    const mainfest = require('../../../dist/mainfest.json');
+    const jsKeys = ['libs.js', 'main.js'];
+    const cssKeys = ['main.css'];
+
+    jsValues = jsKeys.map(v => mainfest[v]);
+    cssValues = cssKeys.map(v => mainfest[v]);
+  }
 
   return `<!DOCTYPE html>
   <html lang="en">

@@ -1,7 +1,8 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 
-const Apple = () =>{
+const Apple = (props) =>{
+
   return (
     <div>
       <h1>苹果</h1>

@@ -5,15 +5,11 @@ import { Routes, Route, useRoutes } from "react-router-dom";
 import App from '../container';
 import routes from '../routes';
 import { Provider } from 'react-redux';
-// import { getStore } from '../store/store';
+import { getStore } from '../store';
 
 import { handleHtml, getStaticRoute } from './util';
 
-// const store = getStore();
-function El() {
-  const element = useRoutes(routes)
-  return element
-}
+const store = getStore();
 
 export default async (req, res, next) => {
     const { path, url } = req;
@@ -26,17 +22,16 @@ export default async (req, res, next) => {
     const context = {};
 
     let reactStr = renderToString(
-        <StaticRouter location={url} context={context}>
-            <App />
-        </StaticRouter>
+        <Provider store={store}>
+            <StaticRouter location={url} context={context}>
+                <App />
+            </StaticRouter>
+        </Provider>
     )
-
-    console.log("reactStr",reactStr)
-
 
     const htmlInfo = {
       reactStr,
-      // initialData:JSON.stringify(store.getState()),
+      initialData:JSON.stringify(store.getState()),
     };
     //在服务端注入数据，构建出组件树,序列化成 HTML
     const html = handleHtml(htmlInfo);

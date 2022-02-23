@@ -10,7 +10,7 @@ module.exports = {
     externals:[nodeExternals()],
     entry: './src/server/index.js',
     output: {
-      filename: 'bundle.js',
+      filename: '[name].[contenthash].js',
       path: path.resolve(__dirname, '../dist/server/')
     },
     module: {
@@ -45,6 +45,7 @@ module.exports = {
       new Webpack.DefinePlugin({
           '__isServer': true,
           '__isDev':true
-      })
+      }),
+      new Webpack.HotModuleReplacementPlugin()
     ]
 }
