@@ -7,7 +7,7 @@ const Color = (props) =>{
     let { color } = useParams();
 
     const handleClick = () => {
-        console.log(color)
+        console.log('color',color)
         navigate('/apple?shape=big',{state:color})
     }
 

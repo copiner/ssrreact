@@ -1,6 +1,6 @@
 import Mock from "mockjs";
 //mock server
-const fetchList = (params) => {
+export const mockApi = (params) => {
 
   const data = Mock.mock({
     "list|5": [
@@ -18,5 +18,3 @@ const fetchList = (params) => {
   });
 
 };
-
-export default fetchList
