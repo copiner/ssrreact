@@ -1,5 +1,5 @@
 import React,{ Suspense } from 'react'
-// import asyncComp from '../util/'
+//import { asyncComp } from '../util/'
 //asyncComp(() => import('../container/apple'))
 
 // const Peach = React.lazy(() => import('../container/peach'));
@@ -12,6 +12,9 @@ import Color from '../component/color'
 import Favor from '../component/favor'
 import Focus from '../component/focus'
 import News from '../container/news'
+import Auth from '../component/auth'
+import Age from '../component/age'
+import Scroll from '../component/scroll'
 
 const routes = [
     {
@@ -49,12 +52,27 @@ const routes = [
     {
     	path:'/focus',
     	name:'聚焦',
-    	element:<Focus />
+    	element:<Focus/>
     },
     {
     	path:'/news',
     	name:'新闻',
-    	element:<News />
+    	element:<News/>
+    },
+    {
+	path:'/auth',
+	name:'权限',
+	element:<Auth/>
+    },
+    {
+	path:'/age',
+	name:'年龄',
+	element:<Age/>
+    },
+    {
+	path:'/scroll',
+	name:'滚动',
+	element:<Scroll/>
     }
 ]
 

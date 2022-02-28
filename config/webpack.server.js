@@ -1,6 +1,6 @@
 // 服务端webpack打包入口
 const Webpack = require('webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+//const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const nodeExternals = require('webpack-node-externals');
 let path = require('path');
 
@@ -27,9 +27,6 @@ module.exports = {
                   exclude: /node_modules/,
                   use: [
                       {
-                          loader: MiniCssExtractPlugin.loader
-                      },
-                      {
                           loader: 'css-loader',
                           options: {
                               modules: true
@@ -41,7 +38,7 @@ module.exports = {
           ]
     },
     plugins: [
-      new MiniCssExtractPlugin(),
+  //    new MiniCssExtractPlugin(),
       new Webpack.DefinePlugin({
           '__isServer': true,
           '__isDev':true

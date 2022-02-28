@@ -1,6 +1,6 @@
 import React from "react";
 
-const asyncComp = (load) => {
+export const asyncComp = (load) => {
   return class AsyncComp extends React.Component {
     constructor(props) {
       super(props)
@@ -32,4 +32,7 @@ const asyncComp = (load) => {
   };
 };
 
-export default asyncComp;
+
+export function isBrowser() {
+  return !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+}
