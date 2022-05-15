@@ -15,6 +15,7 @@ import News from '../container/news'
 import Auth from '../component/auth'
 import Age from '../component/age'
 import Scroll from '../component/scroll'
+import Tick from '../component/tick'
 
 const routes = [
     {
@@ -73,6 +74,11 @@ const routes = [
 	path:'/scroll',
 	name:'滚动',
 	element:<Scroll/>
+    },
+    {
+	path:'/tick',
+	name:'滴答',
+	element:<Tick/>
     }
 ]
 

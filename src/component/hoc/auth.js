@@ -46,3 +46,32 @@ export function wrapAuth(WrappedComponent) {
   // hoistNonReactStatic(New, WrappedComponent);
   return New
 }
+
+export function wrapAuths(WrappedComponent) {
+
+    return props => {
+	return checkAuth(props.auth)?<WrappedComponent {...props} />:null
+    }
+    
+}
+
+
+export function wrapedAuths({}) {
+
+    return WrappedComponent => {
+
+	return props => {
+	    return checkAuth(props.auth)?<WrappedComponent {...props} />:null
+	}
+	
+    }
+    
+}
+/*
+
+let Button = (props) => {
+    console.log(props)
+    return <><button>{ props.children }</button></>
+}
+Button = wrapedAuths({})(Button)
+*/
